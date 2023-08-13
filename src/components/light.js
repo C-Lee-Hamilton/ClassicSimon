@@ -1,10 +1,17 @@
 import { useState } from "react";
 
 function Light(props) {
-  const { color, hovercolor, borderRadius } = props;
+  const { color, hovercolor, borderRadius, playerMove, setPlayerMove, onOff } =
+    props;
   const [active, setActive] = useState(true);
+
   const activeset = () => {
     active === true ? setActive(false) : setActive(true);
+  };
+  const playerMover = () => {
+    if (onOff === true) {
+      setPlayerMove([...playerMove, color]);
+    }
   };
 
   return (
@@ -17,6 +24,7 @@ function Light(props) {
         }}
         onMouseDown={activeset}
         onMouseUp={activeset}
+        onClick={playerMover}
       ></button>
     </div>
   );
