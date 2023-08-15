@@ -172,3 +172,7 @@
     background-color: rgba(0, 0, 0, 0);
   }
 }
+.muteButton {
+  max-width: 50px;
+  /* max-height: 50px; */
+}

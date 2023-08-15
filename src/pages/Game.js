@@ -3,16 +3,21 @@ import Light from "../components/light";
 import ScoreBoard from "../components/scoreBoard";
 import { useState, useEffect } from "react";
 import { Link } from "wouter";
-import loseSoundFile from "../audio/loseNoise.wav";
+import loseNoise from "../audio/loseNoise.mp3";
 import RedNoise from "../audio/RedNoise.mp3";
 import BlueNoise from "../audio/BlueNoise.mp3";
 import YellowNoise from "../audio/YellowNoise.mp3";
 import GreenNoise from "../audio/GreenNoise.mp3";
+import leaveNoise from "../audio/leaveNoise.mp3";
+import muter from "../images/mute.png";
+import speaker from "../images/speaker.png";
 
 function Game() {
   const [onOff, setOnOff] = useState(false);
   //random color moves
   const colors = ["red", "blue", "yellow", "green"];
+  //button message
+  const [message, setMessage] = useState("Click to Play");
   //moves
   const [compMove, setCompMove] = useState([]); //computer move
   const [playerMove, setPlayerMove] = useState([]);
@@ -26,9 +31,21 @@ function Game() {
   const [BlueAudio] = useState(new Audio(BlueNoise));
   const [YellowAudio] = useState(new Audio(YellowNoise));
   const [GreenAudio] = useState(new Audio(GreenNoise));
-  const [audio] = useState(new Audio(loseSoundFile));
+  const [leaveAudio] = useState(new Audio(leaveNoise));
+  const [loseAudio] = useState(new Audio(loseNoise));
+  const [mute, setMute] = useState(false);
   const playSound = () => {
-    audio.play();
+    if (mute === false) {
+      loseAudio.play();
+    }
+  };
+  const playLeaveSound = () => {
+    if (mute === false) {
+      leaveAudio.play();
+    }
+  };
+  const muteButton = () => {
+    setMute(!mute);
   };
   const lightColors = {
     red: ["red", "lightpink"],
@@ -61,18 +78,21 @@ function Game() {
         ...lights,
         [move]: lightColors[move][1],
       });
-      const playColorSound = () => {
-        if (move === "red") {
-          RedAudio.play();
-        } else if (move === "blue") {
-          BlueAudio.play();
-        } else if (move === "yellow") {
-          YellowAudio.play();
-        } else {
-          GreenAudio.play();
-        }
-      };
-      playColorSound();
+
+      if (mute === false) {
+        const playColorSound = () => {
+          if (move === "red") {
+            RedAudio.play();
+          } else if (move === "blue") {
+            BlueAudio.play();
+          } else if (move === "yellow") {
+            YellowAudio.play();
+          } else {
+            GreenAudio.play();
+          }
+        };
+        playColorSound();
+      }
       await delay();
 
       setLights({
@@ -101,6 +121,7 @@ function Game() {
         setLose(true);
         setCompMove([]);
         playSound();
+        setMessage("Try Again");
       }
     }
   }, [playerMove]);
@@ -135,6 +156,10 @@ function Game() {
   const centerButtonColorPress = () => {
     setOnOff(!onOff);
   };
+  const leavePress = () => {
+    setOnOff(!onOff);
+    playLeaveSound();
+  };
 
   return (
     <div className="Game">
@@ -150,6 +175,7 @@ function Game() {
             setPlayerMove={setPlayerMove}
             onOff={onOff}
             compPlaying={compPlaying}
+            mute={mute}
           />
           <Light
             borderRadius="0% 100% 0% 0%"
@@ -159,6 +185,7 @@ function Game() {
             setPlayerMove={setPlayerMove}
             onOff={onOff}
             compPlaying={compPlaying}
+            mute={mute}
           />
         </div>
 
@@ -171,6 +198,7 @@ function Game() {
             setPlayerMove={setPlayerMove}
             onOff={onOff}
             compPlaying={compPlaying}
+            mute={mute}
           />
           <Light
             borderRadius="0% 0% 100% 0%"
@@ -180,6 +208,7 @@ function Game() {
             setPlayerMove={setPlayerMove}
             onOff={onOff}
             compPlaying={compPlaying}
+            mute={mute}
           />
           <button className="startButton" onClick={centerButtonColorPress}>
             <h1
@@ -191,17 +220,19 @@ function Game() {
             >
               Simon
             </h1>
-            {!onOff && <>Click to Play</>}
+            {!onOff && <>{message}</>}
           </button>
         </div>
 
         <h1 className={!lose ? "loser" : "loser2"}>You Lose!</h1>
       </div>
 
-      <Leave
-        link="/"
-        centerButtonColorPress={centerButtonColorPress}
-        text={"Log Out"}
+      <Leave link="/" leavePress={leavePress} text={"Log Out"} />
+      <br />
+      <img
+        className="muteButton"
+        src={mute ? muter : speaker}
+        onClick={muteButton}
       />
     </div>
   );
@@ -210,7 +241,7 @@ function Leave(props) {
   return (
     <Link to={props.link}>
       {" "}
-      <button onClick={props.centerButtonColorPress} className="LeaveGame">
+      <button onClick={props.leavePress} className="LeaveGame">
         Go Back
       </button>
     </Link>

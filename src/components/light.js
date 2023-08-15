@@ -12,6 +12,7 @@ function Light(props) {
     setPlayerMove,
     onOff,
     compPlaying,
+    mute,
   } = props;
   const [active, setActive] = useState(true);
   //audio
@@ -37,7 +38,9 @@ function Light(props) {
   const playerMover = () => {
     if (onOff && !compPlaying) {
       setPlayerMove([...playerMove, color]);
-      playSound();
+      if (mute === false) {
+        playSound();
+      }
     }
   };
 

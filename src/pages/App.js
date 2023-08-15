@@ -1,7 +1,9 @@
 import "../css/App.css";
+import { useState } from "react";
 import { Link, Route, Switch } from "wouter";
 import Game from "../pages/Game";
 import Logo from "../images/SimonLogo.png";
+import introNoise from "../audio/introNoise.mp3";
 
 function App() {
   return (
@@ -15,6 +17,10 @@ function App() {
 }
 
 const Log = () => {
+  const [introAudio] = useState(new Audio(introNoise));
+  const playIntroSound = () => {
+    introAudio.play();
+  };
   return (
     <>
       <h1 className="welcome">Welcome to...</h1>
@@ -23,8 +29,11 @@ const Log = () => {
 
       <Link to="/Game">
         {" "}
-        <button className="StartGame">Start Game</button>
+        <button onClick={playIntroSound} className="StartGame">
+          Start Game
+        </button>
       </Link>
+      <br />
     </>
   );
 };
