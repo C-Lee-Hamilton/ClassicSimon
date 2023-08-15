@@ -4,7 +4,7 @@
   text-shadow: 2px 2px 2px white;
   font-family: "Papyrus";
   font-size: 20px;
-
+  cursor: url("../cursors/Normal.cur"), auto;
   height: 100%;
   width: 100%;
 }

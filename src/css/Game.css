@@ -114,6 +114,7 @@
   background-color: black;
   border-style: ridge;
   border-width: 10px;
+  cursor: url("../cursors/Normal.cur"), auto;
   /* margin-top: 40%; */
 }
 .LeaveGame:hover {

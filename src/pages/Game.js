@@ -198,7 +198,11 @@ function Game() {
         <h1 className={!lose ? "loser" : "loser2"}>You Lose!</h1>
       </div>
 
-      <Leave link="/" text={"Log Out"} />
+      <Leave
+        link="/"
+        centerButtonColorPress={centerButtonColorPress}
+        text={"Log Out"}
+      />
     </div>
   );
 }
@@ -206,7 +210,9 @@ function Leave(props) {
   return (
     <Link to={props.link}>
       {" "}
-      <button className="LeaveGame">Go Back</button>
+      <button onClick={props.centerButtonColorPress} className="LeaveGame">
+        Go Back
+      </button>
     </Link>
   );
 }
