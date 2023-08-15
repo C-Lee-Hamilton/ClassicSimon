@@ -1,9 +1,9 @@
-.App {
-  text-align: center;
-  color: black;
-  text-shadow: 2px 2px 2px white;
-  font-family: "Papyrus";
-  font-size: 20px;
+.Game {
+  animation: backgroundcolor-changer 1s ease-in-out;
+  animation-iteration-count: 2;
+  height: 100vh;
+  margin-top: -5%;
+  background-size: cover;
 }
 .lightButton {
   height: 200px;
@@ -19,6 +19,9 @@
 .gameboard {
   margin: 10%;
   position: relative;
+}
+.lightButton:hover {
+  cursor: url("../cursors/Link Select.cur"), auto;
 }
 .gameboardHalf {
   display: flex;
@@ -37,6 +40,7 @@
   margin-left: 0px;
   margin-top: -15em;
   color: red;
+  cursor: url("../cursors/Normal.cur"), auto;
 }
 .centerLogo {
   border-style: solid;
@@ -49,6 +53,7 @@
   font-size: 45px;
   line-height: 40px;
   border-style: groove;
+  cursor: url("../cursors/Link Select.cur"), auto;
 }
 .startButton:active {
   transform: scale(0.99);
@@ -60,20 +65,19 @@
   text-shadow: cyan 1px 1px 1px;
   text-align: left;
   display: flex;
-  /* position: absolute; */
   margin: auto;
-  margin-top: 2.5%;
+  margin-top: 5%;
   margin-bottom: -8%;
   height: 125px;
-  width: 450px;
+  max-width: 450px;
   border-style: groove;
   border-color: #4a646c;
   border-width: 20px;
-  font-size: 50px;
+  font-size: 220%;
   padding-top: 10px;
   padding-bottom: -10px;
-  padding-right: 60px;
-  padding-left: 30px;
+
+  padding-left: 22px;
   padding-top: 20px;
 }
 .scores {
@@ -100,5 +104,70 @@
   }
   100% {
     transform: scale(3, 3) rotateZ(720deg);
+  }
+}
+
+.LeaveGame {
+  height: 60px;
+  font-size: xx-large;
+  color: rgb(183, 179, 179);
+  background-color: black;
+  border-style: ridge;
+  border-width: 10px;
+  /* margin-top: 40%; */
+}
+.LeaveGame:hover {
+  color: red;
+  animation: color-changer 4s ease infinite;
+  cursor: url("../cursors/Link Select.cur"), auto;
+}
+.LeaveGame:active {
+  animation: shadow-changer 4s ease infinite;
+  transform: translateY(4px);
+}
+
+@keyframes color-changer {
+  0% {
+    color: red;
+  }
+  25% {
+    color: blue;
+  }
+  75% {
+    color: yellow;
+  }
+  100% {
+    color: green;
+  }
+}
+@keyframes shadow-changer {
+  0% {
+    box-shadow: 5px 5px 5px red, 3px 3px 5px blue inset;
+  }
+  25% {
+    box-shadow: 5px 5px 5px blue, 3px 3px 5px red inset;
+  }
+  75% {
+    box-shadow: 5px 5px 5px yellow, 3px 3px 5px green inset;
+  }
+  100% {
+    box-shadow: 5px 5px 5px green, 3px 3px 5px yellow inset;
+  }
+}
+@keyframes backgroundcolor-changer {
+  0% {
+    background-color: rgba(255, 0, 0, 0.264);
+  }
+  25% {
+    background-color: rgba(0, 0, 255, 0.264);
+  }
+  75% {
+    background-color: rgba(255, 255, 0, 0.264);
+  }
+  90% {
+    background-color: rgba(0, 243, 0, 0.264);
+  }
+  100% {
+    background-color: rgba(0, 0, 0, 0);
   }
 }

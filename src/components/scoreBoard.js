@@ -1,5 +1,5 @@
 import "../fonts/stylesheet.css";
-import "../App.css";
+import "../css/Game.css";
 
 function scoreBoard(props) {
   const { score, highScore } = props;

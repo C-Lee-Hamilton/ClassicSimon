@@ -1,13 +1,13 @@
-import "./App.css";
-import Light from "./components/light";
-import ScoreBoard from "./components/scoreBoard";
+import "../css/Game.css";
+import Light from "../components/light";
+import ScoreBoard from "../components/scoreBoard";
 import { useState, useEffect } from "react";
 import { Link } from "wouter";
-import loseSoundFile from "./audio/loseNoise.wav";
-import RedNoise from "./audio/RedNoise.mp3";
-import BlueNoise from "./audio/BlueNoise.mp3";
-import YellowNoise from "./audio/YellowNoise.mp3";
-import GreenNoise from "./audio/GreenNoise.mp3";
+import loseSoundFile from "../audio/loseNoise.wav";
+import RedNoise from "../audio/RedNoise.mp3";
+import BlueNoise from "../audio/BlueNoise.mp3";
+import YellowNoise from "../audio/YellowNoise.mp3";
+import GreenNoise from "../audio/GreenNoise.mp3";
 
 function Game() {
   const [onOff, setOnOff] = useState(false);
@@ -137,7 +137,7 @@ function Game() {
   };
 
   return (
-    <div className="App">
+    <div className="Game">
       <ScoreBoard score={score} highScore={highScore} />
 
       <div className="gameboard">
@@ -197,7 +197,7 @@ function Game() {
 
         <h1 className={!lose ? "loser" : "loser2"}>You Lose!</h1>
       </div>
-      {/* <SoundButton lose={lose} /> */}
+
       <Leave link="/" text={"Log Out"} />
     </div>
   );
@@ -206,7 +206,7 @@ function Leave(props) {
   return (
     <Link to={props.link}>
       {" "}
-      <button>Go Back</button>
+      <button className="LeaveGame">Go Back</button>
     </Link>
   );
 }

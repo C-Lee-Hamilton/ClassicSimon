@@ -5,19 +5,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: linear-gradient(
-    to right,
-    black,
-    darkblue,
-    blue,
-    rgb(0, 140, 255),
-    cyan,
-    cyan,
-    rgb(0, 140, 255),
-    blue,
-    darkblue,
-    black
-  );
+  background: url("../images/background.png") no-repeat center center fixed;
+  background-size: cover;
+  cursor: url("../cursors/Normal.cur"), auto;
 }
 
 code {

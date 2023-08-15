@@ -1,6 +1,7 @@
-import "./App.css";
+import "../css/App.css";
 import { Link, Route, Switch } from "wouter";
-import Game from "./Game.js";
+import Game from "../pages/Game";
+import Logo from "../images/SimonLogo.png";
 
 function App() {
   return (
@@ -16,11 +17,13 @@ function App() {
 const Log = () => {
   return (
     <>
-      <header>Welcome to SIMON</header>
+      <h1 className="welcome">Welcome to...</h1>
+
+      <img className="logo" src={Logo} alt="SIMON" />
 
       <Link to="/Game">
         {" "}
-        <button>Start Game</button>
+        <button className="StartGame">Start Game</button>
       </Link>
     </>
   );
