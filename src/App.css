@@ -36,6 +36,7 @@
   position: absolute;
   margin-left: 0px;
   margin-top: -15em;
+  color: red;
 }
 .centerLogo {
   border-style: solid;
@@ -51,4 +52,53 @@
 }
 .startButton:active {
   transform: scale(0.99);
+}
+.scoreboard {
+  background-color: black;
+  font-family: Cursed Timer ULiL;
+  color: red;
+  text-shadow: cyan 1px 1px 1px;
+  text-align: left;
+  display: flex;
+  /* position: absolute; */
+  margin: auto;
+  margin-top: 2.5%;
+  margin-bottom: -8%;
+  height: 125px;
+  width: 450px;
+  border-style: groove;
+  border-color: #4a646c;
+  border-width: 20px;
+  font-size: 50px;
+  padding-top: 10px;
+  padding-bottom: -10px;
+  padding-right: 60px;
+  padding-left: 30px;
+  padding-top: 20px;
+}
+.scores {
+  font-family: "Cursed Timer ULiL";
+  border-style: inset;
+  margin-bottom: 80px;
+  height: 50px;
+  width: 100px;
+  background-color: darkcyan;
+}
+.loser {
+  display: none;
+}
+.loser2 {
+  color: black;
+  text-shadow: red 1px 1px 1px;
+  font-family: "Bauhaus 93";
+  animation: zoom-in-zoom-out 3s ease infinite;
+  display: block;
+}
+@keyframes zoom-in-zoom-out {
+  0% {
+    transform: scale(1, 1);
+  }
+  100% {
+    transform: scale(3, 3) rotateZ(720deg);
+  }
 }
